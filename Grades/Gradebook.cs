@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,14 @@ namespace Grades
             return stats;    //return new GradeStatistics(); this would return a new instance of gradestatistics 
         }
 
+        public void WriteGrades(TextWriter destination)
+        {
+            for (int i = grades.Count; i > 0; i--) //grades in reverse order
+            {
+                destination.WriteLine(grades[i - 1]);
+            }
+        }
+
         public void AddGrade(float grade) //members of this class holds a state and a behavior
         {
             grades.Add(grade);
@@ -51,28 +60,27 @@ namespace Grades
             }
             set
             {
-                if(!String.IsNullOrEmpty(value)) //validation against null input
+                if (String.IsNullOrEmpty(value))
                 {
-                    if(_name != value)
-                    {
-                        NameChangedEventArgs args = new NameChangedEventArgs();
-                        args.ExistingName = _name;
-                        args.NewName = value; //will equal incoming value
-
-                        NameChanged(this, args);
-                    }
-
-                    _name = value;
+                    throw new ArgumentException("Name cannot be null or empty");
                 }
-                else
+
+                if (_name != value)
                 {
-                    Console.WriteLine("Generic Gradebook");
+                    NameChangedEventArgs args = new NameChangedEventArgs();
+                    args.ExistingName = _name;
+                    args.NewName = value; //will equal incoming value
+
+                    NameChanged(this, args);
                 }
+
+                _name = value;
+
             }
         }
 
         public event NameChangedDelegate NameChanged;
-        private string _name;        
+        private string _name;
         public List<float> grades;
     }
 }

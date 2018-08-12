@@ -62,15 +62,15 @@ namespace Grades.Tests.Types
         [TestMethod]
         public void ReferenceTypesPassByValue()
         {
-            Gradebook book1 = new Gradebook();
-            Gradebook book2 = book1;
+            GradeBook book1 = new GradeBook();
+            GradeBook book2 = book1;
 
             GiveBookAName(book2);
             Assert.AreEqual("A Gradebook", book1.Name);
             //passes because book2 is a pointer to book 1. Changes are visible because it is a reference type
         }
 
-        private void GiveBookAName(Gradebook book)
+        private void GiveBookAName(GradeBook book)
         {
             book.Name = "A Gradebook";
         }
@@ -98,8 +98,8 @@ namespace Grades.Tests.Types
         [TestMethod]
         public void GradebookVariablesHoldAReference()
         {
-            Gradebook g1 = new Gradebook();
-            Gradebook g2 = g1; //copies pointer of g1 into g2
+            GradeBook g1 = new GradeBook();
+            GradeBook g2 = g1; //copies pointer of g1 into g2
 
             g1.Name = "Scott's grade book";
             Assert.AreEqual(g1.Name, g2.Name);

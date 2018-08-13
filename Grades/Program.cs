@@ -11,7 +11,7 @@ namespace Grades
     {
         static void Main(string[] args)
         {
-            GradeTracker book = CreateGradeBook();
+            IGradeTracker book = CreateGradeBook();
 
             GetBookName(book);
             AddGrades(book);
@@ -19,16 +19,21 @@ namespace Grades
             WriteResults(book);
         }
 
-        private static GradeTracker CreateGradeBook()
+        private static IGradeTracker CreateGradeBook()
         {
             //when using the new keyword, we are instantiating an instance of that class. In other words, creating an object
             //Instantiating a class invokes a method called a contructor. It constructs an object. Every class has a default constructor unless defined.
             return new ThrowAwayGradeBook(); //when declaring a new instance, it needs to be a concrete type
         }
 
-        private static void WriteResults(GradeTracker book)
+        private static void WriteResults(IGradeTracker book)
         {
             GradeStatistics stats = book.ComputeStatistics();     //stores reference of the computed results to the stats variable
+
+            foreach(float grade in book)
+            {
+                Console.WriteLine(grade);
+            }
 
             WriteResult("Average", stats.AverageGrade);     //picks the method that makes the most sense
             WriteResult("Highest", stats.HighestGrade); //explicitly converts it to int. Result will be truncated if not an int.
@@ -36,7 +41,7 @@ namespace Grades
             WriteResult(stats.Description, stats.LetterGrade);
         }
 
-        private static void SaveGrades(GradeTracker book)
+        private static void SaveGrades(IGradeTracker book)
         {
             using (StreamWriter outputFile = File.CreateText("grades.txt"))
             {
@@ -44,14 +49,14 @@ namespace Grades
             }
         }
 
-        private static void AddGrades(GradeTracker book)
+        private static void AddGrades(IGradeTracker book)
         {
             book.AddGrade(91);
             book.AddGrade(89.5f); //Since we declared it as a float, we need to append it with an f 
             book.AddGrade(75);
         }
 
-        private static void GetBookName(GradeTracker book)
+        private static void GetBookName(IGradeTracker book)
         {
             try
             {

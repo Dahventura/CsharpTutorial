@@ -1,7 +1,0 @@
-C:\Users\Diego\source\repos\Grades\Grades\obj\Debug\Grades.csproj.CoreCompileInputs.cache
-C:\Users\Diego\source\repos\Grades\Grades\bin\Debug\Grades.exe.config
-C:\Users\Diego\source\repos\Grades\Grades\bin\Debug\Grades.exe
-C:\Users\Diego\source\repos\Grades\Grades\bin\Debug\Grades.pdb
-C:\Users\Diego\source\repos\Grades\Grades\obj\Debug\Grades.exe
-C:\Users\Diego\source\repos\Grades\Grades\obj\Debug\Grades.pdb
-C:\Users\Diego\source\repos\Grades\Grades\obj\Debug\Grades.csprojAssemblyReference.cache
